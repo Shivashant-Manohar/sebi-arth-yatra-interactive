@@ -91,6 +91,10 @@ body {
 .title { margin: 0; font-size: 20px; font-weight: 800; color: var(--text); }
 .tagline { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
 
+.partner-logos { display: flex; gap: 10px; align-items: center; }
+.partner-logos a { display: inline-flex; align-items: center; }
+.partner-logos img { height: 44px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 8px; box-shadow: var(--shadow-sm); }
+
 .nav { display: flex; gap: 16px; }
 .nav a { color: var(--text); text-decoration: none; font-weight: 600; opacity: .8; }
 .nav a:hover { opacity: 1; text-decoration: underline; }
@@ -100,15 +104,15 @@ body {
 .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 700; }
 
 /* Layout */
-.section { padding: 28px 20px; max-width: 1100px; margin: 0 auto; }
+.section { padding: 24px 0; width: min(1480px, 90vw); margin: 0 auto; }
 .section h3 { margin: 0 0 12px; font-size: 24px; }
 .section p { color: var(--muted); }
 .themes-intro { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
 
 /* Hero */
-.hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; padding: 32px 20px; max-width: 1100px; margin: 0 auto; }
-.hero-text h2 { margin: 0 0 8px; font-size: 32px; }
-.hero-text p { margin: 0 0 16px; color: var(--muted); }
+.hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; padding: 28px 0; width: min(1480px, 90vw); margin: 0 auto; }
+.hero-text h2 { margin: 0 0 8px; font-size: 48px; }
+.hero-text p { margin: 0 0 16px; color: var(--muted); font-size: 24px; }
 .hero-img { width: 100%; border-radius: 16px; box-shadow: var(--shadow-md); }
 
 /* Buttons */
@@ -152,10 +156,33 @@ body {
 .pdf-thumb iframe, .pdf-thumb object { width: 100%; height: 220px; border: 0; display: block; background: #fff; }
 .pdf-thumb .pdf-meta { position: absolute; left: 8px; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: var(--step--1); display: inline-block; }
 
+/* PDF Cover Carousel */
+.pdf-carousel { position: relative; overflow: hidden; padding: 24px 48px; }
+.carousel-track { display: flex; gap: 18px; align-items: center; transition: transform .35s ease; will-change: transform; }
+.cover { flex: 0 0 280px; position: relative; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border); background: var(--surface); transform: scale(.95); opacity: .8; transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease; cursor: pointer; }
+.cover object { width: 100%; height: 360px; display: block; border: 0; background: #fff; }
+.cover .cover-meta { position: absolute; left: 10px; bottom: 10px; right: 10px; background: rgba(0,0,0,.6); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px; }
+.cover.active { transform: scale(1.06); opacity: 1; box-shadow: 0 16px 36px rgba(0,0,0,.2); }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); border: 1px solid var(--border); background: var(--surface); color: var(--text); width: 36px; height: 36px; border-radius: 999px; display: grid; place-items: center; box-shadow: var(--shadow-sm); cursor: pointer; }
+.carousel-btn:hover { box-shadow: var(--shadow-md); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
 /* Section bands */
 .section--band { background: linear-gradient(180deg, rgba(37,99,235,0.06), transparent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 [data-palette="emerald"] .section--band { background: linear-gradient(180deg, rgba(16,185,129,0.08), transparent); }
 [data-palette="violet"] .section--band { background: linear-gradient(180deg, rgba(124,58,237,0.08), transparent); }
+
+/* Spotlight split layout */
+.spotlight-row { display: grid; grid-template-columns: 3fr 2fr; gap: 18px; align-items: center; }
+.spotlight-row.reverse { grid-template-columns: 2fr 3fr; }
+.spotlight-row img { width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); background: #fff; }
+.spotlight-text h4 { margin: 0 0 8px; }
+.spotlight-text p { margin: 0 0 8px; }
+.spotlight-text ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+@media (max-width: 900px) {
+  .spotlight-row { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }

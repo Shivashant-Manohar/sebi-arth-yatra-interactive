@@ -23,6 +23,17 @@
   applyTheme(savedTheme);
   const savedPalette = (()=>{ try { return localStorage.getItem(PALETTE_KEY) || 'default'; } catch { return 'default'; } })();
   applyPalette(savedPalette);
+  function openPdfInViewer(pdf) {
+    const frame = document.getElementById('pdf-frame');
+    const viewer = document.getElementById('pdf-viewer');
+    if (!frame || !viewer) return;
+    const url = pdf ? pdf + '#view=FitH' : '';
+    frame.setAttribute('data', url);
+    const iframe = frame.querySelector('iframe');
+    if (iframe) iframe.src = url;
+    viewer.style.display = pdf ? '' : 'none';
+  }
+
   document.addEventListener('change', (e) => {
     const target = e.target;
     if (target && target.matches('[data-theme-select]')) {
@@ -32,28 +43,50 @@
       applyPalette(target.value);
     }
     if (target && target.id === 'pdf-select') {
-      const pdf = target.value;
-      const frame = document.getElementById('pdf-frame');
-      if (frame) {
-        frame.setAttribute('data', pdf + '#view=FitH');
-        const iframe = frame.querySelector('iframe');
-        if (iframe) iframe.src = pdf + '#view=FitH';
-      }
+      const pdf = target.value || '';
+      openPdfInViewer(pdf);
     }
   });
 
   // Click on preview thumbnails to load into viewer
   document.addEventListener('click', (e) => {
-    const thumb = e.target.closest && e.target.closest('.pdf-thumb');
+    const thumb = e.target.closest && e.target.closest('.pdf-thumb, .cover');
     if (thumb) {
       const pdf = thumb.getAttribute('data-pdf');
       const select = document.getElementById('pdf-select');
-      if (select) {
+      if (select && pdf) {
         select.value = pdf;
-        select.dispatchEvent(new Event('change'));
+        openPdfInViewer(pdf);
       }
+      const all = document.querySelectorAll('.cover');
+      all.forEach(el => el.classList.toggle('active', el === thumb));
     }
   });
+
+  // Carousel logic
+  const track = document.getElementById('pdf-track');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  let carouselIndex = 0;
+  function updateCarousel() {
+    if (!track) return;
+    const cover = track.querySelector('.cover');
+    const covers = Array.from(track.querySelectorAll('.cover'));
+    if (!cover || covers.length === 0) return;
+    const step = cover.getBoundingClientRect().width + 18;
+    const maxIndex = Math.max(0, covers.length - Math.ceil(track.parentElement.offsetWidth / step));
+    if (carouselIndex < 0) carouselIndex = 0;
+    if (carouselIndex > maxIndex) carouselIndex = maxIndex;
+    track.style.transform = `translateX(${-carouselIndex * step}px)`;
+  }
+  function scrollByCovers(dir) {
+    carouselIndex += dir;
+    updateCarousel();
+  }
+  if (prevBtn) prevBtn.addEventListener('click', () => scrollByCovers(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => scrollByCovers(1));
+  window.addEventListener('resize', updateCarousel);
+  updateCarousel();
   const knBtn = document.getElementById('lang-kn');
   const enBtn = document.getElementById('lang-en');
 
