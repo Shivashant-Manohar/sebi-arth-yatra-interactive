@@ -55,6 +55,22 @@
   --chart-equity: #fb7185;
 }
 
+/* Accent palette variants (structure colors) */
+[data-palette="emerald"] {
+  --accent: #10b981;         /* emerald */
+  --accent-weak: #e6f7f1;
+  --chart-debt: #34d399;     /* green */
+  --chart-gold: #fbbf24;     /* amber */
+  --chart-equity: #60a5fa;   /* blue */
+}
+[data-palette="violet"] {
+  --accent: #7c3aed;         /* violet */
+  --accent-weak: #efe7ff;
+  --chart-debt: #a78bfa;     /* light violet */
+  --chart-gold: #f59e0b;     /* amber */
+  --chart-equity: #fb7185;   /* rose */
+}
+
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
@@ -116,6 +132,7 @@ body {
 .card img { width: 100%; border-radius: 12px; margin-bottom: 10px; background: #fff; }
 .card h4 { margin: 6px 0 8px; color: var(--text); }
 .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); transition: transform .12s ease, box-shadow .2s ease; }
 
 /* Forms */
 .quiz .q { background: #fff; border: 1px solid var(--border); padding: 12px; border-radius: 12px; margin-bottom: 12px; }
@@ -128,6 +145,17 @@ body {
 /* PDF viewer */
 .pdf-viewer { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 0; }
 .pdf-embed { width: 100%; height: min(80vh, 900px); border: 0; display: block; }
+
+/* PDF previews grid */
+.pdf-previews { display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: var(--space-5); margin-top: var(--space-4); }
+.pdf-thumb { position: relative; border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: var(--surface); cursor: pointer; box-shadow: var(--shadow-sm); }
+.pdf-thumb iframe, .pdf-thumb object { width: 100%; height: 220px; border: 0; display: block; background: #fff; }
+.pdf-thumb .pdf-meta { position: absolute; left: 8px; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: var(--step--1); display: inline-block; }
+
+/* Section bands */
+.section--band { background: linear-gradient(180deg, rgba(37,99,235,0.06), transparent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+[data-palette="emerald"] .section--band { background: linear-gradient(180deg, rgba(16,185,129,0.08), transparent); }
+[data-palette="violet"] .section--band { background: linear-gradient(180deg, rgba(124,58,237,0.08), transparent); }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }

@@ -1,6 +1,7 @@
 (function() {
   // Theme toggle (light/dark/night) with persistence
   const THEME_KEY = 'site-theme';
+  const PALETTE_KEY = 'site-palette';
   const validThemes = ['light','dark','night'];
   function applyTheme(theme) {
     const t = validThemes.includes(theme) ? theme : 'light';
@@ -10,12 +11,25 @@
     document.querySelectorAll('[data-theme-select]')
       .forEach(sel => sel.value = t);
   }
+  function applyPalette(palette) {
+    const p = ['default','emerald','violet'].includes(palette) ? palette : 'default';
+    if (p === 'default') document.documentElement.removeAttribute('data-palette');
+    else document.documentElement.setAttribute('data-palette', p);
+    try { localStorage.setItem(PALETTE_KEY, p); } catch {}
+    document.querySelectorAll('[data-palette-select]')
+      .forEach(sel => sel.value = p);
+  }
   const savedTheme = (()=>{ try { return localStorage.getItem(THEME_KEY) || 'light'; } catch { return 'light'; } })();
   applyTheme(savedTheme);
+  const savedPalette = (()=>{ try { return localStorage.getItem(PALETTE_KEY) || 'default'; } catch { return 'default'; } })();
+  applyPalette(savedPalette);
   document.addEventListener('change', (e) => {
     const target = e.target;
     if (target && target.matches('[data-theme-select]')) {
       applyTheme(target.value);
+    }
+    if (target && target.matches('[data-palette-select]')) {
+      applyPalette(target.value);
     }
     if (target && target.id === 'pdf-select') {
       const pdf = target.value;
@@ -24,6 +38,19 @@
         frame.setAttribute('data', pdf + '#view=FitH');
         const iframe = frame.querySelector('iframe');
         if (iframe) iframe.src = pdf + '#view=FitH';
+      }
+    }
+  });
+
+  // Click on preview thumbnails to load into viewer
+  document.addEventListener('click', (e) => {
+    const thumb = e.target.closest && e.target.closest('.pdf-thumb');
+    if (thumb) {
+      const pdf = thumb.getAttribute('data-pdf');
+      const select = document.getElementById('pdf-select');
+      if (select) {
+        select.value = pdf;
+        select.dispatchEvent(new Event('change'));
       }
     }
   });
