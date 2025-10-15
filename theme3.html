@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ಥೀಮ್ 3 – ವಂಚನೆಯನ್ನು ಬಯಲು ಮಾಡಿ | Theme 3 – Bust the Scam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="index.html" class="title" style="text-decoration:none;color:inherit">←</a>
+      <div>
+        <h1 class="title" data-kn="ಥೀಮ್ 3: ವಂಚನೆಯನ್ನು ಬಯಲು ಮಾಡಿ" data-en="Theme 3: Bust the Scam">ಥೀಮ್ 3: ವಂಚನೆಯನ್ನು ಬಯಲು ಮಾಡಿ</h1>
+        <p class="tagline" data-kn="ಹೊಸ ಮಾಯಾಜಾಲಗಳಿಗೆ ಎಚ್ಚರ" data-en="Stay alert to modern frauds">ಹೊಸ ಮಾಯಾಜಾಲಗಳಿಗೆ ಎಚ್ಚರ</p>
+      </div>
+    </div>
+    <div class="lang">
+      <button id="lang-kn" class="lang-btn active">ಕನ್ನಡ</button>
+      <button id="lang-en" class="lang-btn">English</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="card">
+      <h3 data-kn="ರಿಸ್ಕ್ ಚೆಕ್‌ಲಿಸ್ಟ್" data-en="Scam Risk Checklist">ರಿಸ್ಕ್ ಚೆಕ್‌ಲಿಸ್ಟ್</h3>
+      <form id="scam-form" class="quiz">
+        <div class="q"><label><input type="checkbox" value="1"> <span data-kn="'ಖಚಿತ ಲಾಭ' ಎಂದು ಹೇಳಲಾಗುತ್ತಿದೆಯೆ?" data-en="Are 'guaranteed returns' promised?">'ಖಚಿತ ಲಾಭ' ಎಂದು ಹೇಳಲಾಗುತ್ತಿದೆಯೆ?</span></label></div>
+        <div class="q"><label><input type="checkbox" value="1"> <span data-kn="ನೋಂದಾಯಿಸದ ಮಧ್ಯವರ್ತಿ/ಆಪ್ ಆಗಿದೆಯೆ?" data-en="Unregistered intermediary/app?">ನೋಂದಾಯಿಸದ ಮಧ್ಯವರ್ತಿ/ಆಪ್ ಆಗಿದೆಯೆ?</span></label></div>
+        <div class="q"><label><input type="checkbox" value="1"> <span data-kn="UPI ಹ್ಯಾಂಡಲ್ ಪರಿಶೀಲನೆ ಇಲ್ಲವೆ?" data-en="No UPI handle verification?">UPI ಹ್ಯಾಂಡಲ್ ಪರಿಶೀಲನೆ ಇಲ್ಲವೆ?</span></label></div>
+        <div class="q"><label><input type="checkbox" value="1"> <span data-kn="ಡೀಪ್‌ಫೇಕ್/ಪ್ರಭಾವಿಗಳ ತಪ್ಪು ಸಲಹೆ?" data-en="Deepfake/influencer misguidance?">ಡೀಪ್‌ಫೇಕ್/ಪ್ರಭಾವಿಗಳ ತಪ್ಪು ಸಲಹೆ?</span></label></div>
+        <div class="q"><label><input type="checkbox" value="1"> <span data-kn="ODR/ಸ್ಕೋರ್ಸ್ ದೂರು ಮಾರ್ಗವಿಲ್ಲವೆ?" data-en="No SCORES/ODR recourse?">ODR/ಸ್ಕೋರ್ಸ್ ದೂರು ಮಾರ್ಗವಿಲ್ಲವೆ?</span></label></div>
+        <button type="button" class="cta" id="scam-calc" data-kn="ರಿಸ್ಕ್ ಅಂಕ ನೋಡಿ" data-en="See Risk Score">ರಿಸ್ಕ್ ಅಂಕ ನೋಡಿ</button>
+      </form>
+      <div id="scam-output" class="quiz-result"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 data-kn="ಎಚ್ಚರಿಕೆಗಳು" data-en="Alerts">ಎಚ್ಚರಿಕೆಗಳು</h3>
+      <ul class="themes-intro">
+        <li data-kn="ನಕಲಿ ಟ್ರೇಡಿಂಗ್ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಂದ ಎಚ್ಚರ." data-en="Beware of fake trading apps.">ನಕಲಿ ಟ್ರೇಡಿಂಗ್ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಂದ ಎಚ್ಚರ.</li>
+        <li data-kn="ಸೆಬಿ-ನೋಂದಾಯಿತವರೊಂದಿಗೆ ಮಾತ್ರ ವ್ಯವಹರಿಸಿ." data-en="Deal only with SEBI-registered intermediaries.">ಸೆಬಿ-ನೋಂದಾಯಿತವರೊಂದಿಗೆ ಮಾತ್ರ ವ್ಯವಹರಿಸಿ.</li>
+        <li data-kn="ವಂಚನೆ ಅನುಮಾನವಾದರೆ ಸ್ಕೋರ್ಸ್‌ನಲ್ಲಿ ದೂರು ನೀಡಿ." data-en="Report on SCORES if fraud suspected.">ವಂಚನೆ ಅನುಮಾನವಾದರೆ ಸ್ಕೋರ್ಸ್‌ನಲ್ಲಿ ದೂರು ನೀಡಿ.</li>
+      </ul>
+      <a class="cta" href="https://youtu.be/oIAQsjJEwj8" target="_blank" rel="noopener">YouTube ▶</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p data-kn="© 2025 ಸೆಬಿ ಅರ್ಥಯಾತ್ರೆ" data-en="© 2025 SEBI Arth Yatra">© 2025 ಸೆಬಿ ಅರ್ಥಯಾತ್ರೆ</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
