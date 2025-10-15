@@ -1,4 +1,32 @@
 (function() {
+  // Theme toggle (light/dark/night) with persistence
+  const THEME_KEY = 'site-theme';
+  const validThemes = ['light','dark','night'];
+  function applyTheme(theme) {
+    const t = validThemes.includes(theme) ? theme : 'light';
+    if (t === 'light') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(THEME_KEY, t); } catch {}
+    document.querySelectorAll('[data-theme-select]')
+      .forEach(sel => sel.value = t);
+  }
+  const savedTheme = (()=>{ try { return localStorage.getItem(THEME_KEY) || 'light'; } catch { return 'light'; } })();
+  applyTheme(savedTheme);
+  document.addEventListener('change', (e) => {
+    const target = e.target;
+    if (target && target.matches('[data-theme-select]')) {
+      applyTheme(target.value);
+    }
+    if (target && target.id === 'pdf-select') {
+      const pdf = target.value;
+      const frame = document.getElementById('pdf-frame');
+      if (frame) {
+        frame.setAttribute('data', pdf + '#view=FitH');
+        const iframe = frame.querySelector('iframe');
+        if (iframe) iframe.src = pdf + '#view=FitH';
+      }
+    }
+  });
   const knBtn = document.getElementById('lang-kn');
   const enBtn = document.getElementById('lang-en');
 
@@ -83,10 +111,14 @@
     function renderPie(safe, balanced, aggressive) {
       if (!svg) return;
       const total = safe + balanced + aggressive || 1;
+      const root = getComputedStyle(document.documentElement);
+      const colorDebt = root.getPropertyValue('--chart-debt').trim() || '#60a5fa';
+      const colorGold = root.getPropertyValue('--chart-gold').trim() || '#fbbf24';
+      const colorEquity = root.getPropertyValue('--chart-equity').trim() || '#f87171';
       const parts = [
-        { v: safe / total, color: '#6eb3d1', label: 'Debt/Bonds' },
-        { v: balanced / total, color: '#ffd84d', label: 'Balanced/Gold' },
-        { v: aggressive / total, color: '#ff6b6b', label: 'Equity' }
+        { v: safe / total, color: colorDebt, label: 'Debt/Bonds' },
+        { v: balanced / total, color: colorGold, label: 'Balanced/Gold' },
+        { v: aggressive / total, color: colorEquity, label: 'Equity' }
       ];
       let start = 0;
       svg.innerHTML = '';
@@ -142,12 +174,16 @@
         const canvas = document.createElement('canvas');
         canvas.width = 1200; canvas.height = 630;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#0f1440'; ctx.fillRect(0,0,1200,630);
-        ctx.fillStyle = '#ffd84d'; ctx.font = 'bold 42px Inter, sans-serif';
+        const root = getComputedStyle(document.documentElement);
+        const bg = '#ffffff';
+        const accent = root.getPropertyValue('--accent').trim() || '#2563eb';
+        const text = root.getPropertyValue('--text').trim() || '#1d2433';
+        ctx.fillStyle = bg; ctx.fillRect(0,0,1200,630);
+        ctx.fillStyle = accent; ctx.font = 'bold 42px Inter, sans-serif';
         ctx.fillText('Investment DNA Certificate', 40, 90);
-        const text = document.getElementById('dna-breakup').innerText.replace(/\n/g, '  ');
-        ctx.fillStyle = '#e8ebff'; ctx.font = '28px Inter, sans-serif';
-        wrapText(ctx, text, 40, 160, 1120, 40);
+        const textLines = document.getElementById('dna-breakup').innerText.replace(/\n/g, '  ');
+        ctx.fillStyle = text; ctx.font = '28px Inter, sans-serif';
+        wrapText(ctx, textLines, 40, 160, 1120, 40);
         const url = canvas.toDataURL('image/png');
         const a = document.createElement('a'); a.href = url; a.download = 'investment-dna.png'; a.click();
         function wrapText(c, t, x, y, maxW, lh){

@@ -24,6 +24,11 @@
       <a href="#quiz" data-kn="ಪ್ರಶ್ನೋತ್ತರ" data-en="Quiz">ಪ್ರಶ್ನೋತ್ತರ</a>
     </nav>
     <div class="lang">
+      <select data-theme-select class="lang-btn" aria-label="Theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="night">Night</option>
+      </select>
       <button id="lang-kn" class="lang-btn active">ಕನ್ನಡ</button>
       <button id="lang-en" class="lang-btn">English</button>
     </div>
@@ -105,6 +110,31 @@
       <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
     </section>
   </main>
+
+  <section id="knowledge" class="section">
+    <div class="container">
+      <h3 data-en="Knowledge" data-kn="ಜ್ಞಾನ ಕೇಂದ್ರ">ಜ್ಞಾನ ಕೇಂದ್ರ</h3>
+      <p class="tagline" data-en="Curated insights you can read right here." data-kn="ಇಲ್ಲೇ ಓದಬಹುದಾದ ಆಯ್ದ ಒಳನೋಟಗಳು.">ಇಲ್ಲೇ ಓದಬಹುದಾದ ಆಯ್ದ ಒಳನೋಟಗಳು.</p>
+      <div class="cluster" style="justify-content: space-between;">
+        <label class="cluster" for="pdf-select">
+          <span data-en="Select document" data-kn="ಡಾಕ್ಯುಮೆಂಟ್ ಆಯ್ಕೆ">ಡಾಕ್ಯುಮೆಂಟ್ ಆಯ್ಕೆ</span>
+          <select id="pdf-select" class="input" style="max-width: 520px;">
+            <option value="202510-FundsIndia-Wealth-Conversations.pdf">FundsIndia Wealth Conversations (Oct 2025)</option>
+            <option value="WhiteOak Monthly Market Outlook Jul 2025.pdf">WhiteOak Monthly Market Outlook (Jul 2025)</option>
+          </select>
+        </label>
+        <div class="cluster">
+          <a class="button button--subtle" id="pdf-open-drive-1" href="https://drive.google.com/file/d/1Oj3qFr-N6vmdEAbixp_VzunDZclijfQj/view?usp=sharing" target="_blank" rel="noopener" data-en="Open on Drive 1" data-kn="ಡ್ರೈವ್ 1 ತೆರೆಯಿರಿ">ಡ್ರೈವ್ 1 ತೆರೆಯಿರಿ</a>
+          <a class="button button--subtle" id="pdf-open-drive-2" href="https://drive.google.com/file/d/1v8_-ucQe9A-X3yBVFF4enTXFVJ2jkMuv/view?usp=sharing" target="_blank" rel="noopener" data-en="Open on Drive 2" data-kn="ಡ್ರೈವ್ 2 ತೆರೆಯಿರಿ">ಡ್ರೈವ್ 2 ತೆರೆಯಿರಿ</a>
+        </div>
+      </div>
+      <div class="pdf-viewer card" style="margin-top:16px;">
+        <object id="pdf-frame" data="202510-FundsIndia-Wealth-Conversations.pdf#view=FitH" type="application/pdf" class="pdf-embed">
+          <iframe title="PDF Viewer" class="pdf-embed" src="202510-FundsIndia-Wealth-Conversations.pdf#view=FitH"></iframe>
+        </object>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <p data-kn="© 2025 ಸೆಬಿ ಅರ್ಥಯಾತ್ರೆ. ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗೆ ಮಾತ್ರ." data-en="© 2025 SEBI Arth Yatra. For educational purposes only.">© 2025 ಸೆಬಿ ಅರ್ಥಯಾತ್ರೆ. ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗೆ ಮಾತ್ರ.</p>
